@@ -320,7 +320,6 @@ const skill = {
 		audioname: 'bxyr_baihuaqun',
 		content: async function (event, trigger, player) {
 			trigger.cancel();
-			trigger.finish();
 		},
 		ai: {
 			nofire: true,
@@ -368,7 +367,6 @@ const skill = {
 		forced: true,
 		content: async function (event, trigger, player) {
 			trigger.cancel();
-			trigger.finish();
 		}
 	},
 	_bxyr_jiaoliao: {
@@ -426,7 +424,6 @@ const skill = {
 		forced: true,
 		content: async function (event, trigger, player) {
 			trigger.cancel();
-			trigger.finish();
 		},
 		ai: {
 			nofire: true,
@@ -496,7 +493,7 @@ const skill = {
 		},
 		content: async function (event, trigger, player) {
 			trigger.cancel();
-			trigger.finish();
+
 			game.log(player, '免疫此伤害');
 		},
 		ai: {
@@ -525,7 +522,6 @@ const skill = {
 		},
 		content: async function (event, trigger, player) {
 			trigger.cancel();
-			trigger.finish();
 		},
 		ai: {
 			effect: {
@@ -593,7 +589,7 @@ const skill = {
 		content: async function (event, trigger, player) {
 			game.log(player, '发动了卧龙四轮车，', trigger.card, '对', trigger.target, '失效');
 			trigger.cancel();
-			trigger.finish();
+
 		},
 		ai: {
 			effect: {
@@ -610,7 +606,7 @@ const skill = {
 		audioname: 'bxyr_xieshenmianju',
 		content: async function (event, trigger, player) {
 			trigger.cancel();
-			trigger.finish();
+
 		},
 		ai: {
 			noturnOver: true,
@@ -699,7 +695,7 @@ const skill = {
 		},
 		content: async function (event, trigger, player) {
 			trigger.cancel();
-			trigger.finish();
+
 			await player.discard(player.get('e', '4'));
 			await player.gain(trigger.cards);
 			player.$gain2(trigger.cards);
@@ -724,7 +720,7 @@ const skill = {
 		},
 		content: async function (event, trigger, player) {
 			trigger.cancel();
-			trigger.finish();
+
 		},
 		ai: {
 			effect: {

@@ -401,7 +401,7 @@ const skill = {
 			}).forResult();
 			if (result.bool) {
 				trigger.cancel();
-				trigger.finish();
+
 			}
 		},
 	},

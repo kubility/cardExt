@@ -430,7 +430,7 @@ const translate = {
 	bxyr_liang: '粮',
 	bxyr_liang_info: '目标角色摸一张牌，然后获得技能"粮"：出牌阶段结束时，若手牌数大于手牌上限，弃置多余的牌',
 	bxyr_zhan: '斩',
-	bxyr_zhan_info: '对目标角色使用，目标角色需打出一张闪，否则受到1点伤害',
+	bxyr_zhan_info: '对目标角色使用，目标角色需打出一张闪，否则时区一点体力上限',
 	bxyr_su: '酥',
 	bxyr_su_info: '出牌阶段，对一至两名目标角色使用，目标角色回复1点体力',
 	bxyr_cisha: '刺杀',

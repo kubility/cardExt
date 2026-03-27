@@ -350,7 +350,7 @@ const skill = {
 		},
 		content: async function (event, trigger, player) {
 			trigger.cancel();
-			trigger.finish();
+
 			await trigger.player.loseMaxHp();
 		}
 	},
@@ -487,7 +487,6 @@ const skill = {
 		forced: true,
 		content: async function (event, trigger, player) {
 			trigger.cancel();
-			trigger.finish();
 		}
 	},
 	bxyr_jishengong: {

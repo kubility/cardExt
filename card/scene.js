@@ -381,7 +381,7 @@ const skill = {
 				trigger.num++;
 			} else {
 				trigger.cancel();
-				trigger.finish();
+
 			}
 		}
 	},
