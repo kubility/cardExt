@@ -1,5 +1,6 @@
 import { lib, game, ui, get, ai, _status } from "./lib/utils.js";
 import { precontent } from "./precontent.js";
+import { content } from "./content.js";
 import config from "./lib/config.js";
 
 const extensionInfo = await lib.init.promises.json(`${lib.assetURL}extension/民间卡牌/info.json`);
@@ -9,6 +10,7 @@ let extensionPackage = {
 	help: {},
 	package: {},
 	precontent,
+	content,
 	files: { character: [], card: [], skill: [], audio: [] },
 };
 
