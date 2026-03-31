@@ -8,7 +8,7 @@ const character = {
         sex: 'male',
         group: 'shen',
         skills: ['shen_wuxing'],
-        image: 'ext:民间卡牌/image/character/shen_wuxingshi.jpg',
+        img: 'extension/民间卡牌/image/character/shen_wuxingshi.jpg',
     },
 };
 
@@ -22,6 +22,13 @@ const skill = {
         usable: 5,
         filter(event, player) {
             return player.countCards('h', card => card.name == 'sha') > 0;
+        },
+        mod: {
+            cardUsable(card, player, num) {
+                if (card.name == 'sha' && card.nature && ['metal', 'wood', 'water', 'flare', 'earth'].includes(card.nature)) {
+                    return Infinity;
+                }
+            },
         },
         async content(event, trigger, player) {
             const card = event.cards[0];
@@ -49,7 +56,7 @@ const translate = {
     shen_wuxingshi: '五行使',
     shen_wuxingshi_prefix: '五行',
     shen_wuxing: '五行',
-    shen_wuxing_info: '出牌阶段，当你使用【杀】时，你可以选择将此【杀】的属性转换为金、木、水、火、土中的任意一种。',
+    shen_wuxing_info: '出牌阶段，当你使用【杀】时，你可以选择将此【杀】的属性转换为金、木、水、火、土中的任意一种。锁定技，属性【杀】无使用次数限制。',
 };
 
 game.import("character", function () {

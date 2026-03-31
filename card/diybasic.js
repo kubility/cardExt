@@ -3,28 +3,50 @@ const card = {
 };
 
 const skill = {
-    sha_metal_skill: {
-        trigger: { source: 'damageBegin4' },
+    sha_imprison_skill: {
+        trigger: { source: 'damageEnd' },
         equipSkill: false,
         ruleSkill: true,
         forced: true,
-        filter(event) {
-            game.log("金:" + game.hasNature(event.card, 'metal'));
-            return event.card.name == 'sha' && game.hasNature(event.card, 'metal') && event.target && event.target.num('e') > 0;
+        filter(event, player) {
+            return player != event.player
+                && event.card
+                && event.card.name == 'sha'
+                && game.hasNature(event.card, 'imprison');
+        },
+        content: async function (event, trigger, player) {
+            if (!trigger.player.isTurnedOver()) {
+                await trigger.player.turnOver();
+            }
+            if (!trigger.player.isLinked()) {
+                await trigger.player.link();
+            }
+        },
+    },
+    sha_metal_skill: {
+        trigger: { source: 'damageBegin1' },
+        equipSkill: false,
+        ruleSkill: true,
+        forced: true,
+        filter(event, player) {
+            return player != event.player
+                && event.card
+                && event.card.name == 'sha'
+                && game.hasNature(event.card, 'metal')
+                && event.player.countCards('e') > 0;
         },
         content: async function (event, trigger, player) {
             trigger.num++;
         },
     },
-
+    //ok
     sha_wood_skill: {
         trigger: { source: 'damageEnd' },
         equipSkill: false,
         ruleSkill: true,
         forced: true,
         filter(event) {
-            game.log("木:" + game.hasNature(event.card, 'wood'));
-            return event.card.name == 'sha' && game.hasNature(event.card, 'wood');
+            return event.card && event.card.name == 'sha' && game.hasNature(event.card, 'wood');
         },
         content: async function (event, trigger, player) {
             await player.draw();
@@ -32,13 +54,15 @@ const skill = {
     },
 
     sha_water_skill: {
-        trigger: { source: 'shaMiss' },
+        trigger: { source: "shaUnhirt" },
         equipSkill: false,
         ruleSkill: true,
         forced: true,
-        filter(event) {
-            game.log("水:" + game.hasNature(event.card, 'water'));
-            return event.card.name == 'sha' && game.hasNature(event.card, 'water') && !event.directHit;
+        filter(event, player) {
+            return player != event.player
+                && event.card
+                && event.card.name == 'sha'
+                && game.hasNature(event.card, 'water');
         },
         content: async function (event, trigger, player) {
             await player.draw();
@@ -46,27 +70,29 @@ const skill = {
     },
 
     sha_flare_skill: {
-        trigger: { source: 'damageBegin4' },
+        trigger: { source: 'damageBegin1' },
         equipSkill: false,
         ruleSkill: true,
         forced: true,
-        filter(event) {
-            game.log("火:" + game.hasNature(event.card, 'flare'));
-            return event.card.name == 'sha' && game.hasNature(event.card, 'flare') && event.target && event.target.num('h') <= player.num('h');
+        filter(event, player) {
+            return player != event.player
+                && event.card
+                && event.card.name == 'sha'
+                && game.hasNature(event.card, 'flare')
+                && event.player.countCards('h') <= player.countCards('h');
         },
         content: async function (event, trigger, player) {
             trigger.num++;
         },
     },
-
+    //ok
     sha_earth_skill: {
         trigger: { source: 'damageEnd' },
         equipSkill: false,
         ruleSkill: true,
         forced: true,
         filter(event) {
-            game.log("土:" + game.hasNature(event.card, 'earth'));
-            return event.card.name == 'sha' && game.hasNature(event.card, 'earth');
+            return event.card && event.card.name == 'sha' && game.hasNature(event.card, 'earth');
         },
         content: async function (event, trigger, player) {
             await player.recover();
@@ -148,11 +174,17 @@ const skill = {
 };
 
 const translate = {
+    imprison: '锁',
     metal: '金',
     wood: '木',
     water: '水',
     flare: '火',
     earth: '土',
+    sha_imprison: '锁杀',
+    sha_imprison_skill: '锁杀',
+    sha_imprison_info: '出牌阶段，对你攻击范围内一名角色使用。目标需打出【闪】响应，否则受到伤害且翻面并横置。',
+    sha_imprison_skill_info: '当你使用锁属性的【杀】对目标造成伤害后，禁止目标回合内使用主动技能。',
+    sha_imprison_skill_ban: '锁',
     sha_metal: '金杀',
     sha_metal_info: '出牌阶段，对你攻击范围内一名角色使用。目标需打出【闪】响应，否则受到伤害。若目标装备区有牌，伤害+1。',
     sha_wood: '木杀',
@@ -173,7 +205,7 @@ const translate = {
     sha_flare_skill_info: '当你使用火属性的【杀】时，若目标手牌数不大于你，伤害+1。',
     sha_earth_skill: '土杀',
     sha_earth_skill_info: '当你使用土属性的【杀】造成伤害后，你回复1点体力。',
-    bxyr_wuxing_combine: '五行合成',
+    bxyr_wuxing_combine: '归一',
     bxyr_wuxing_combine_info: '出牌阶段，若你手牌中有金杀、木杀、水杀、火杀、土杀各一张，你可以弃置这五张牌。若五张牌花色相同，你获得技能【命运】；若花色不同，你获得技能【掌控】。',
     bxyr_zhangkong: '掌控',
     bxyr_zhangkong_info: '锁定技，你的摸牌阶段摸牌数改为5张。',
@@ -185,7 +217,7 @@ const suits = ['heart', 'diamond', 'club', 'spade'];
 const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
 
 const list = [];
-const natureList = ['metal', 'wood', 'water', 'flare', 'earth'];
+const natureList = ['metal', 'wood', 'water', 'flare', 'earth', 'imprison'];
 
 for (const nature of natureList) {
     const count = 13;
