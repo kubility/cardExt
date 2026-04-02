@@ -58,6 +58,9 @@ export async function precontent(config, pack) {
 		modules.push(loadModule('diybasic', 'DIY卡牌'));
 		characterModules.push(loadCharacterModule('diycharacter', 'DIY角色'));
 	}
+	if (config.diytrick) {
+		modules.push(loadModule('diytrick', 'DIY锦囊'));
+	}
 
 	await Promise.all(modules);
 	await Promise.all(characterModules);

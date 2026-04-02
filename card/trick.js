@@ -94,7 +94,7 @@ const card = {
 					if (get.color(card) == 'red' && !target.hasSkillTag('nofire')) return -6;
 					return 0;
 				});
-				if (result.color == 'red') {
+				if (result.bool == false) {
 					await target.damage(1, 'fire');
 				}
 			}
