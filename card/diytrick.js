@@ -95,9 +95,6 @@ const list = [
     ['spade', 7, 'diy_nvwuduzuyao'],
     ['spade', 7, 'diy_nvwuduzuyao'],
     ['spade', 7, 'diy_nvwuduzuyao'],
-    ['spade', 7, 'diy_nvwuduzuyao'],
-    ['spade', 7, 'diy_nvwuduzuyao'],
-    ['spade', 7, 'diy_nvwuduzuyao'],
 ];
 
 const suits = ['heart', 'diamond', 'club', 'spade'];

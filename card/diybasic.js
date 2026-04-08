@@ -220,7 +220,7 @@ const list = [];
 const natureList = ['metal', 'wood', 'water', 'flare', 'earth', 'imprison'];
 
 for (const nature of natureList) {
-    const count = 13;
+    const count = 5;
     for (let i = 0; i < count; i++) {
         const suit = suits[Math.floor(Math.random() * 4)];
         const number = numbers[Math.floor(Math.random() * 13)];

@@ -39,4 +39,10 @@ export async function content(config, pack) {
         game.addGlobalSkill("sha_imprison_skill");
         game.addGlobalSkill("bxyr_wuxing_combine");
     }
+    if(config.dragonball){ 
+        game.addGlobalSkill("dragonball_init");//龙珠初始化
+        game.addGlobalSkill("dragonball_transfer");//抢夺龙珠
+        game.addGlobalSkill("dragonball_die");//龙珠死亡
+    }
+    
 }

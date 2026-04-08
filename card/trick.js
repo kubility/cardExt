@@ -83,7 +83,6 @@ const card = {
 		fullskin: true,
 		enable: true,
 		type: 'trick',
-		selectTarget: -1,
 		filterTarget: function (card, player, target) {
 			if (player == target) return false;
 			return target.num('hej') >= 0;
@@ -316,7 +315,7 @@ const card = {
 			return get.suit(card) != 'diamond' ? -3 : 0;
 		},
 		effect: function (result) {
-			if (result.judge) player.addTempSkill('bxyr_bamenjinsuo', 'phaseAfter');
+			if (result.judge < 0) player.addTempSkill('bxyr_bamenjinsuo', 'phaseAfter');
 		},
 		ai: {
 			basic: {
@@ -355,7 +354,7 @@ const card = {
 			return 0;
 		},
 		effect: function (result) {
-			if (result.judge) player.damage(1, 'poison', 'nosource');
+			if (result.judge < 0) player.damage(1, 'poison', 'nosource');
 		},
 		ai: {
 			basic: {
@@ -420,7 +419,7 @@ const skill = {
 			await player.chooseToUse(get.prompt('bxyr_touxi', trigger.player), function (card, player) {
 				if (card.name != 'bxyr_touxi') return false;
 				return true;
-			}, trigger.player, -1);
+			}, trigger.player);
 		}
 	},
 	bxyr_bamenjinsuo: {
