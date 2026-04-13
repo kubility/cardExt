@@ -61,6 +61,9 @@ export async function precontent(config, pack) {
 	if (config.diytrick) {
 		modules.push(loadModule('diytrick', 'DIY锦囊'));
 	}
+	if (config.diyweapon) {
+		modules.push(loadModule('diyweapon', 'DIY武器'));
+	}
 	if (config.dragonball) {
 		modules.push(loadModule('dragonball', '龙珠'));
 	}
